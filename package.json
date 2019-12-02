@@ -1,0 +1,141 @@
+{
+  "name": "twizzle",
+  "productName": "Twizzle",
+  "author": {
+    "name": "Kitze",
+    "email": "kristijan.mkd@gmail.com",
+    "url": "https://kitze.io/"
+  },
+  "license": "MIT",
+  "version": "1.2.5",
+  "description": "Focus on messaging and tweeting",
+  "repository": "https://github.com/kitze/twizzle",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-emotion": "^10.0.22",
+    "babel-plugin-preval": "^1.6.4",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-do-expressions": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "babel-preset-minify": "^0.4.3",
+    "chalk": "^2.4.2",
+    "concurrently": "^3.5.1",
+    "cross-env": "^5.1.5",
+    "current-git-branch": "^1.1.0",
+    "devtron": "^1.4.0",
+    "electron": "6.1.2",
+    "electron-builder": "^21.2.0",
+    "electron-devtools-installer": "^2.2.4",
+    "env-cmd": "^9.0.3",
+    "gnirts": "^1.1.5",
+    "prompts": "^2.2.1",
+    "react-app-rewire-babel-loader": "^0.1.1",
+    "react-app-rewired": "^1.5.2",
+    "react-scripts": "^1.1.4",
+    "semver": "^6.3.0",
+    "shelljs": "^0.8.3",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "versiony": "^2.0.1",
+    "wait-on": "^2.1.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "3.1.2"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.22",
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-regular": "^5.0.13",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/react-fontawesome": "^0.0.20",
+    "@sentry/browser": "4.3.0",
+    "@sentry/electron": "^0.13.0",
+    "dotenv": "^8.2.0",
+    "electron-better-ipc": "^0.6.0",
+    "electron-context-menu": "^0.9.1",
+    "electron-debug": "^1.5.0",
+    "electron-is-dev": "^0.3.0",
+    "electron-notarize": "^0.2.0",
+    "electron-redux": "^1.4.0",
+    "electron-store": "^1.3.0",
+    "electron-timber": "^0.4.0",
+    "electron-unhandled": "^1.1.0",
+    "electron-util": "^0.10.2",
+    "electron-window-state": "^5.0.2",
+    "emotion": "^10.0.17",
+    "emotion-theming": "^10.0.19",
+    "got": "^9.3.2",
+    "lodash": "^4.17.15",
+    "menubar": "^6.0.5",
+    "modern-normalize": "^0.5.0",
+    "ms": "^2.1.2",
+    "prettier": "^1.12.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-keydown": "^1.9.7",
+    "react-redux": "^7.1.1",
+    "react-resize-detector": "^2.3.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "update-electron-app": "^1.5.0"
+  },
+  "homepage": "./",
+  "main": "build/electron.js",
+  "build": {
+    "productName": "Twizzle",
+    "appId": "com.kitze.twizzle",
+    "afterSign": "./scripts/after-sign-hook.js",
+    "extends": null,
+    "files": [
+      "build/**/*"
+    ],
+    "mac": {
+      "icon": "electron-public/icon.icns"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "electron-public/icon.png",
+      "artifactName": "${productName}-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    },
+    "extraMetadata": {
+      "main": "build/electron.js"
+    },
+    "directories": {
+      "buildResources": "assets"
+    },
+    "publish": [
+      {
+        "provider": "github"
+      }
+    ],
+    "compression": "maximum"
+  },
+  "scripts": {
+    "start-react": "react-app-rewired start",
+    "react:build": "react-app-rewired build",
+    "electron:build": "yarn build-electron && yarn copy-electron",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject",
+    "copy-electron": "cp -r ./electron/icons/. ./build/icons && cp -r ./electron-public/. ./build",
+    "build-all": "yarn react:build && yarn electron:build && yarn copy-electron",
+    "build": "yarn build-all && cross-env SKIP_SIGN=true yarn electron-builder",
+    "build-cross-platform": "yarn build-all && cross-env SKIP_SIGN=true yarn electron-builder --mac --win --linux",
+    "release": "yarn build-all && env-cmd -f ./.env.dev electron-builder --mac --win --linux --publish=always",
+    "start": "concurrently \"cross-env BROWSER=none yarn start-react\" \"wait-on http://localhost:3000 && electron electron/main.js\"",
+    "prebuild-all": "rm -rf ./build && rm -rf ./dist",
+    "build-electron": "webpack",
+    "electron-pack": "yarn electron-builder",
+    "babel": "babel",
+    "ship": "node scripts/ship.js",
+    "clean": "rm -rf ./build && rm -rf ./dist && rm -rf ./license/build"
+  },
+  "favoriteScripts": [
+    "start"
+  ]
+}
