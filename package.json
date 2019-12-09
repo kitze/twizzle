@@ -100,8 +100,11 @@
     },
     "linux": {
       "target": [
-        "AppImage"
-      ]
+        "AppImage",
+        "pacman",
+        "deb"
+      ],
+      "category": "Network"
     },
     "extraMetadata": {
       "main": "build/electron.js"
