@@ -66,7 +66,7 @@
     "emotion": "^10.0.17",
     "emotion-theming": "^10.0.19",
     "got": "^9.3.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "menubar": "^6.0.5",
     "modern-normalize": "^0.5.0",
     "ms": "^2.1.2",
