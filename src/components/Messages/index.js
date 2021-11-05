@@ -93,7 +93,7 @@ class Messages extends Component {
     );
 
     session.cookies.get({ url: urls.cookiesDomain }, (error, cookies) => {
-      const isAuthed = ['u', 'auth_token'].every(cookieName => !!cookies.find(c => c.name === cookieName));
+      const isAuthed = ['auth_token'].every(cookieName => !!cookies.find(c => c.name === cookieName));
       if (url === 'https://mobile.twitter.com/home') {
         if (isAuthed === true) {
           webview.loadURL(urls.messages);

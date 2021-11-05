@@ -128,11 +128,11 @@ const createMenuBar = () => {
         height: 290,
         width: 450,
         maxWidth: 650,
-        maxHeight: 600
-      },
-      webPreferences: {
-        nodeIntegration: true,
-        webviewTag: true
+        maxHeight: 600,
+        webPreferences: {
+          nodeIntegration: true,
+          webviewTag: true
+        },
       },
       windowPosition
     });
