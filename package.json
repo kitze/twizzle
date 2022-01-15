@@ -35,7 +35,7 @@
     "react-app-rewired": "^1.5.2",
     "react-scripts": "^1.1.4",
     "semver": "^6.3.0",
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.5",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "versiony": "^2.0.1",
     "wait-on": "^2.1.0",
