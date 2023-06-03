@@ -65,7 +65,7 @@
     "electron-window-state": "^5.0.2",
     "emotion": "^10.0.17",
     "emotion-theming": "^10.0.19",
-    "got": "^9.3.2",
+    "got": "^11.8.5",
     "lodash": "^4.17.15",
     "menubar": "^9.1.0",
     "modern-normalize": "^0.5.0",
